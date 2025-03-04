@@ -48,7 +48,7 @@ export function MemeGrid({ memes }: { memes: Meme[] }) {
                       </div>
                       <div className="flex items-center gap-1">
                         <MessageSquare className="h-4 w-4" />
-                        <span>{meme.comments.length}</span>
+                        <span>{meme.comments?.length ?? 0}</span>
                       </div>
                     </div>
                   </div>
