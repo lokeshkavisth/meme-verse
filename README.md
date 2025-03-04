@@ -1,36 +1,202 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MemeVerse
 
-## Getting Started
+### 🔥 MemeVerse: A Fun, Interactive Meme Sharing Platform
 
-First, run the development server:
+MemeVerse is a multi-page interactive web app where users can explore, upload, and engage with memes. The project is built using **Next.js 15**, **Framer-Motion**, and **Shadcn/ui**, featuring modern UI/UX design, seamless animations, and optimized performance.
+
+---
+
+## 🚀 Live Demo
+
+[Click here to explore MemeVerse](https://memeverse-2.netlify.app/)
+
+---
+
+## 📸 Features
+
+### 1. Homepage
+
+- Dynamic display of **Trending Memes** fetched from APIs.
+- Dark Mode Toggle.
+- Smooth animations with **Framer Motion**.
+- User-friendly layout.
+
+---
+
+### 2. Meme Explorer
+
+- Infinite Scrolling.
+- Meme **Category Filters**:
+  - Trending
+  - New
+  - Classic
+  - Random
+- **Search Functionality** with debounce.
+- Sorting by:
+  - Likes
+  - Date
+  - Comments
+
+---
+
+### 3. Meme Upload
+
+- Upload **Images or GIFs**.
+- Add funny captions with **Text Editor**.
+- AI-based meme caption generation (using Google Gemini API).
+- Meme preview before uploading.
+
+---
+
+### 4. Meme Details
+
+- Dynamic URL Routing (`/meme/:id`).
+- Like and Comment functionality (Persisted in Local Storage).
+- Animated Like button.
+- Share memes via social media.
+
+---
+
+### 5. User Profile
+
+- User-uploaded memes list.
+- Edit **Profile Information** (Name, Bio, Profile Picture).
+- View liked memes.
+- Meme Upload History.
+
+---
+
+### 6. Leaderboard
+
+- Top 10 **Most Liked Memes**.
+- Top Users ranked by:
+  - Engagement (Likes + Comments)
+  - Meme Contributions
+
+---
+
+### 7. Easter Egg 404 Page
+
+- Custom **Meme-based 404 Page**.
+- Surprise hidden meme joke!
+
+---
+
+## 🛠️ Tech Stack
+
+| Tech          | Description                  |
+| ------------- | ---------------------------- |
+| Next.js       | App Routing + SSR            |
+| React         | Component-based architecture |
+| Tailwind CSS  | Modern Utility-first Styling |
+| Framer Motion | Smooth Animations            |
+| Context API   | Global State Management      |
+| Imgflip API   | Meme Generation API          |
+| Cloudinary    | Image Upload and Storage     |
+| Local Storage | Data Persistence             |
+
+---
+
+## 🎯 Performance Optimization
+
+- Image Optimization via **Next.js Image Component**.
+- **Lazy Loading** memes and components.
+- API Caching with Local Storage.
+- Code Splitting with **React Profiler**.
+
+---
+
+## 📌 How to Run Locally
+
+### Prerequisites
+
+- Node.js v18+
+- npm or yarn
+
+### Installation
 
 ```bash
+# Clone the Repo
+git clone https://github.com/lokeshkavisth/meme-verse.git
+
+# Navigate to Project
+cd meme-verse
+
+# Install Dependencies
+npm install or npm install --force
+
+# Start Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📊 Folder Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+src
+ └─ ├─ components        # Reusable UI Components
+    ├─ context           # Global State Context
+    ├─ app               # Next.js app router
+    ├─ public            # Static Files
+    ├─ utils             # Utility Functions
+    └─ types             # Typescript Types
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🔌 APIs Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Imgflip API (Meme Generator)
+- ImgBB API (Image Upload)
+- Cloudinary (Image Storage)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🔥 Optimizations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Lazy loading images.
+- Pagination and infinite scroll.
+- Optimized animations.
+- Local storage caching.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 💡 Future Improvements
+
+- User Authentication.
+- JWT-Based API Integration.
+- Meme Template Library.
+- Community Meme Challenges.
+
+---
+
+## 🌐 Deployment
+
+The app is deployed on **Netlify**.
+
+[Live Demo](https://memeverse-2.netlify.app/)
+
+---
+
+## 🎥 Video Demo
+
+[Watch the Video Explanation](#)
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss your ideas.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+### Thank You for Visiting MemeVerse 🎉
+
+Laugh, Share, Repeat! 😎
