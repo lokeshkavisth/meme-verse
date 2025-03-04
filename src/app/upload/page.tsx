@@ -84,6 +84,7 @@ export default function UploadPage() {
       toast.error("Caption generation failed", {
         description: "There was an error generating a caption for your meme",
       });
+      console.error("Caption generation failed:", error);
     } finally {
       setIsGenerating(false);
     }

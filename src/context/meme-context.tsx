@@ -1,5 +1,6 @@
 "use client";
 
+import { Comment, Meme } from "@/app/types/meme";
 import { getRandomDateISO } from "@/utils/get-random-date-iso";
 import {
   createContext,
@@ -11,26 +12,35 @@ import {
 
 // Define the context type
 interface MemeContextType {
-  memes: any[];
+  memes: Meme[];
   loading: boolean;
   hasMore: boolean;
   setPage: (page: number) => void;
-  setMemes: (memes: any[]) => void;
+  setMemes: (memes: Meme[]) => void;
   fetchMemes: () => void;
-  addMeme: (meme: any) => void;
+  addMeme: (meme: Meme) => void;
   likeMeme: (id: string, value: number) => void;
-  addComment: (memeId: string, comment: any) => void;
+  addComment: (memeId: string, comment: Comment) => void;
 }
 
+interface MemeResult {
+  id: string;
+  name: string;
+  url: string;
+  captions: number;
+  box_count: number;
+  height: number;
+  width: number;
+}
 // Create the context
 const MemeContext = createContext<MemeContextType | undefined>(undefined);
 
 // Provider component
 export function MemeProvider({ children }: { children: ReactNode }) {
-  const [memes, setMemes] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [page, setPage] = useState(1);
+  const [memes, setMemes] = useState<Meme[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  const [page, setPage] = useState<number>(1);
 
   // Fetch memes based on category
   const fetchMemes = useCallback(async () => {
@@ -45,9 +55,10 @@ export function MemeProvider({ children }: { children: ReactNode }) {
       const resultPerPage = 10;
 
       if (data.success) {
+        console.log(data.data.memes);
         const newMemes = data.data.memes
           .slice(memes.length, memes.length + resultPerPage)
-          .map((meme: any) => ({
+          .map((meme: MemeResult) => ({
             id: meme.id,
             title: meme.name,
             imageUrl: meme.url,
@@ -78,7 +89,7 @@ export function MemeProvider({ children }: { children: ReactNode }) {
 
   // Add a new meme
 
-  const addMeme = useCallback(async (meme: any) => {
+  const addMeme = useCallback(async (meme: Meme) => {
     try {
       const url = `https://memegen.link/custom/${encodeURIComponent(
         meme.title
@@ -101,7 +112,7 @@ export function MemeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Add a comment to a meme
-  const addComment = useCallback((memeId: string, comment: any) => {
+  const addComment = useCallback((memeId: string, comment: Comment) => {
     setMemes((prevMemes) =>
       prevMemes.map((meme) =>
         meme.id === memeId
