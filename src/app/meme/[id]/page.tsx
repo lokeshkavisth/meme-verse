@@ -239,7 +239,7 @@ export default function MemeDetailsPage() {
                     className="flex items-center gap-1"
                   >
                     <MessageSquare className="h-5 w-5" />
-                    <span>{meme.comments.length}</span>
+                    <span>{meme.comments?.length || 0}</span>
                   </Button>
 
                   <Button variant="ghost" size="sm" onClick={handleShare}>
@@ -286,8 +286,8 @@ export default function MemeDetailsPage() {
               <Separator className="my-4" />
 
               <div className="space-y-4 max-h-[500px] overflow-y-auto">
-                {meme.comments.length > 0 ? (
-                  meme.comments.map((comment: Comment) => (
+                {(meme.comments ?? []).length > 0 ? (
+                  (meme.comments ?? []).map((comment: Comment) => (
                     <div key={comment.id} className="flex gap-3">
                       <Avatar className="h-8 w-8">
                         <AvatarImage

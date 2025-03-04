@@ -4,10 +4,10 @@ export interface Meme {
   id: string;
   title: string;
   imageUrl: string;
-  category: string;
+  category: Category;
   caption: string;
   likes: number;
-  comments: Comment[];
+  comments?: Comment[];
   created: string;
   user: User;
 }
@@ -19,4 +19,9 @@ export interface Comment {
   created: string;
 }
 
-export type Category = "trending" | "new" | "classic" | "random";
+export enum Category {
+  Trending = "trending",
+  New = "new",
+  Classic = "classic",
+  Random = "random",
+}

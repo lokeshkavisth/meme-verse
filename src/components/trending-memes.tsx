@@ -7,6 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Heart } from "lucide-react";
 import Link from "next/link";
 import { motion } from "motion/react";
+import Image from "next/image";
 
 export function TrendingMemes() {
   const { memes, fetchMemes, loading } = useMemeContext();
@@ -49,10 +50,11 @@ export function TrendingMemes() {
             <Card className="overflow-hidden hover:shadow-md transition-shadow p-0">
               <CardContent className="p-0">
                 <div className="aspect-square bg-muted relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={meme.imageUrl || "/placeholder.svg"}
                     alt={meme.title}
+                    width={500}
+                    height={500}
                     className="object-cover w-full h-full"
                   />
                 </div>

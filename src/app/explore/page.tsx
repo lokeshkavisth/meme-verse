@@ -7,10 +7,11 @@ import { useMemeContext } from "@/context/meme-context";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { Category } from "../types/meme";
 
 export default function ExplorePage() {
   const { memes, fetchMemes, loading, hasMore } = useMemeContext();
-  const [category, setCategory] = useState<string>("trending");
+  const [category, setCategory] = useState<Category>(Category.Trending);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [sortBy, setSortBy] = useState<string>("likes");
 
@@ -32,7 +33,7 @@ export default function ExplorePage() {
   }, [inView, hasMore, loading, fetchMemes, searchQuery, category]);
 
   // Handle category change (only filters, no fetch)
-  const handleCategoryChange = (newCategory: string) => {
+  const handleCategoryChange = (newCategory: Category) => {
     setSearchQuery("");
     setCategory(newCategory);
   };
@@ -60,7 +61,8 @@ export default function ExplorePage() {
       if (sortBy === "likes") return b.likes - a.likes;
       if (sortBy === "date")
         return new Date(b.created).getTime() - new Date(a.created).getTime();
-      if (sortBy === "comments") return b.comments?.length - a.comments?.length;
+      if (sortBy === "comments")
+        return (b.comments?.length ?? 0) - (a.comments?.length ?? 0);
       return 0;
     });
 

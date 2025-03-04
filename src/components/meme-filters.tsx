@@ -1,5 +1,6 @@
 "use client";
 
+import { Category } from "@/app/types/meme";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -11,8 +12,8 @@ import {
 import { Flame, Clock, Star, Shuffle } from "lucide-react";
 
 interface MemeFiltersProps {
-  category: string;
-  onCategoryChange: (category: string) => void;
+  category: Category;
+  onCategoryChange: (category: Category) => void;
   sortBy: string;
   onSortChange: (sort: string) => void;
 }
@@ -29,7 +30,7 @@ export function MemeFilters({
         <Button
           variant={category === "trending" ? "default" : "outline"}
           size="sm"
-          onClick={() => onCategoryChange("trending")}
+          onClick={() => onCategoryChange(Category.Trending)}
           className="flex gap-1"
         >
           <Flame className="h-4 w-4" />
@@ -38,7 +39,7 @@ export function MemeFilters({
         <Button
           variant={category === "new" ? "default" : "outline"}
           size="sm"
-          onClick={() => onCategoryChange("new")}
+          onClick={() => onCategoryChange(Category.New)}
           className="flex gap-1"
         >
           <Clock className="h-4 w-4" />
@@ -47,7 +48,7 @@ export function MemeFilters({
         <Button
           variant={category === "classic" ? "default" : "outline"}
           size="sm"
-          onClick={() => onCategoryChange("classic")}
+          onClick={() => onCategoryChange(Category.Classic)}
           className="flex gap-1"
         >
           <Star className="h-4 w-4" />
@@ -56,7 +57,7 @@ export function MemeFilters({
         <Button
           variant={category === "random" ? "default" : "outline"}
           size="sm"
-          onClick={() => onCategoryChange("random")}
+          onClick={() => onCategoryChange(Category.Random)}
           className="flex gap-1"
         >
           <Shuffle className="h-4 w-4" />

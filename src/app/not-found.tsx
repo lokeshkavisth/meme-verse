@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Home } from "lucide-react";
+import Image from "next/image";
 
 export default function NotFound() {
   // Random meme-related 404 messages
@@ -19,7 +20,7 @@ export default function NotFound() {
   const randomMessage = messages[Math.floor(Math.random() * messages.length)];
 
   return (
-    <div className="container flex flex-col items-center justify-center min-h-[80vh] px-4 text-center">
+    <div className="container mx-auto flex flex-col items-center justify-center min-h-[80vh] px-4 text-center">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -58,10 +59,11 @@ export default function NotFound() {
         transition={{ delay: 0.6, duration: 0.5 }}
       >
         <div className="aspect-square bg-muted rounded-lg overflow-hidden relative">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/placeholder.svg?height=400&width=400"
+          <Image
+            src="/image.png"
             alt="404 Meme"
+            width={400}
+            height={400}
             className="object-cover w-full h-full"
           />
           <div className="absolute inset-0 flex items-center justify-center">

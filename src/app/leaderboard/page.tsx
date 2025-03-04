@@ -47,7 +47,7 @@ export default function LeaderboardPage() {
       }
 
       const user = userMap.get(userId);
-      user.score += meme.likes + meme.comments.length;
+      user.score += meme.likes + (meme.comments?.length || 0);
       user.memeCount += 1;
       userMap.set(userId, user);
     });

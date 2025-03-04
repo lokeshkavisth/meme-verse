@@ -10,7 +10,6 @@ import {
   type ReactNode,
 } from "react";
 
-// Define the context type
 interface MemeContextType {
   memes: Meme[];
   loading: boolean;
@@ -42,12 +41,11 @@ export function MemeProvider({ children }: { children: ReactNode }) {
   const [hasMore, setHasMore] = useState<boolean>(true);
   const [page, setPage] = useState<number>(1);
 
-  // Fetch memes based on category
   const fetchMemes = useCallback(async () => {
     if (loading) return; // Prevent multiple calls if already loading
 
-    setLoading(true);
     try {
+      setLoading(true);
       const response = await fetch("https://api.imgflip.com/get_memes");
       const data = await response.json();
 
@@ -85,16 +83,14 @@ export function MemeProvider({ children }: { children: ReactNode }) {
     } finally {
       setLoading(false);
     }
-  }, [page]);
+  }, [loading, memes.length, page]);
 
   // Add a new meme
-
   const addMeme = useCallback(async (meme: Meme) => {
     try {
       const url = `https://memegen.link/custom/${encodeURIComponent(
         meme.title
       )}/${encodeURIComponent(meme.caption)}.jpg`;
-      // console.log(url);
 
       setMemes((prevMemes) => [{ ...meme, imageUrl: url }, ...prevMemes]);
     } catch (error) {
@@ -116,7 +112,7 @@ export function MemeProvider({ children }: { children: ReactNode }) {
     setMemes((prevMemes) =>
       prevMemes.map((meme) =>
         meme.id === memeId
-          ? { ...meme, comments: [comment, ...meme.comments] }
+          ? { ...meme, comments: [comment, ...(meme.comments ?? [])] }
           : meme
       )
     );

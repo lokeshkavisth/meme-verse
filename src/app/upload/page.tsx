@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import generateAiCaption from "@/actions/ai-action";
+import { Category, Meme } from "../types/meme";
 
 export default function UploadPage() {
   const [title, setTitle] = useState<string>("");
@@ -108,18 +109,19 @@ export default function UploadPage() {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Create new meme object
-      const newMeme = {
+      const newMeme: Meme = {
         id: Date.now().toString(),
         title,
         caption,
-        imageUrl: imagePreview as string,
+        category: Category.Random,
+        imageUrl: "",
         likes: 0,
         comments: [],
         created: new Date().toISOString(),
         user: {
-          id: user?.id,
-          name: user?.fullName,
-          avatar: user?.imageUrl,
+          id: user?.id ?? "",
+          name: user?.fullName ?? "",
+          avatar: user?.imageUrl ?? "",
         },
       };
 
@@ -136,6 +138,7 @@ export default function UploadPage() {
       toast.error("Upload failed", {
         description: "There was an error uploading your meme",
       });
+      console.error("Upload failed:", error);
     } finally {
       setIsUploading(false);
     }
